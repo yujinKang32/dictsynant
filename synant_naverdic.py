@@ -50,13 +50,6 @@ def get_links():
             
             title = driver.find_element_by_xpath('//*[@id="searchPage_entry"]/div/div[1]/div/a')
             data.append([title.get_attribute('href'),word])
-            #url = soup.select('#searchPage_entry > div > div:nth-child(1) > div > a')
-            #print(url)
-            #driver.find_element_by_xpath('//*[@id="searchPage_entry"]/div/div[1]/div/a').click()
-#             driver.implicitly_wait(5)
-
-#             for u in url:
-#                 data.append(u.get('href'))
 
         except:# 검색했을 때 단어가 나오는 경우
             try:
@@ -165,8 +158,6 @@ if __name__ == '__main__':
     word_data = manager.list()
     jobs = []
     data = get_links()
-    #pool = Pool(processes = 4)
-    #pool.map(get_content, get_links())
     for i in data:
         p = multiprocessing.Process(target = get_content, args = (i,))   
         jobs.append(p)
